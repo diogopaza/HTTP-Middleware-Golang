@@ -4,7 +4,8 @@ import(
 
 	"fmt"
 	"net/http"
-	"log"
+	"github.com/gorilla/mux"
+	"github.com/gorilla/negroni"
 )
 
 
@@ -38,7 +39,7 @@ func middlewareJson( h http.HandlerFunc ) http.HandlerFunc{
 	}
 }
 
-func middlewareAuth( h http.HandlerFunc ) http.HandlerFunc{
+func middlewareAuth() negroni.Handler{
 	return func(w http.ResponseWriter, r *http.Request){
 
 	if r.URL.Path == "/general"{
